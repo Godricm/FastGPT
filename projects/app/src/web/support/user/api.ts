@@ -63,10 +63,11 @@ export const updatePasswordByOld = ({ oldPsw, newPsw }: { oldPsw: string; newPsw
     newPsw: hashStr(newPsw)
   });
 
-export const postLogin = ({ password, ...props }: PostLoginProps) =>
-  POST<ResLogin>('/support/user/account/loginByPassword', {
+export const postLogin = ({ username, password, ...props }: PostLoginProps) =>
+  POST<ResLogin>('/member/auth/login', {
     ...props,
-    password: hashStr(password)
+    mobile: username,
+    password: password
   });
 
 export const loginOut = () => GET('/support/user/account/loginout');
